@@ -6,11 +6,10 @@ const useTweet = () => {
 
   useEffect(async () => {
     const unsubscribe = await getSubscription("tweets", (snapData) => {
-      setTweets(
-        snapData.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        })
-      );
+      const tweetData = snapData.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      });
+      setTweets(tweetData);
     });
 
     return () => unsubscribe();
