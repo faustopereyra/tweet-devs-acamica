@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { userContext } from "../../contexts/userProvider";
 import { setData } from "../../services/CRUDops";
 import useInput from "../../hooks/useInput";
 
 const CreateTweet = () => {
-  const [user, handleUser] = useInput();
+  const { displayName } = useContext(userContext);
+  console.log(displayName);
   const [tweet, handleTweet] = useInput();
 
   const handleCreate = async () => {
-    await setData("tweets", { user, tweet });
+    await setData("tweets", { user: displayName, tweet });
   };
   return (
     <div>
@@ -16,12 +18,6 @@ const CreateTweet = () => {
         placeholder="What are yor thinking?"
         onChange={handleTweet}
         value={tweet}
-      />
-      <input
-        type="text"
-        placeholder="Your Name"
-        onChange={handleUser}
-        value={user}
       />
       <button onClick={handleCreate}>Create Tweet</button>
     </div>
