@@ -5,7 +5,6 @@ import useInput from "../../hooks/useInput";
 
 const CreateTweet = () => {
   const { displayName } = useContext(userContext);
-  console.log(displayName);
   const [tweet, handleTweet] = useInput();
 
   const handleCreate = async () => {
